@@ -8,7 +8,7 @@ def main():
     doc.InsertObject(trash)
     trash.SetName('Trash / Archive')
     trash[c4d.ID_BASELIST_ICON_COLORIZE_MODE] = 2
-    trash[c4d.ID_BASELIST_ICON_COLOR] = c4d.Vector(	0.18824, 0.70196, 0.74902)
+    trash[c4d.ID_BASELIST_ICON_COLOR] = c4d.Vector(0.18824, 0.70196, 0.74902)
     trash[c4d.ID_BASELIST_ICON_FILE] = str(440000193)
     trash[c4d.NULLOBJECT_DISPLAY] = 4
     trash[c4d.NULLOBJECT_ORIENTATION] = 3
@@ -41,6 +41,8 @@ def main():
     cam[c4d.NULLOBJECT_DISPLAY] = 14
     
     c4d.EventAdd()
+    c4d.gui.MessageDialog("SetUp is ready!")
+
 
 if __name__ == '__main__':
     main()
