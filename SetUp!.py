@@ -41,7 +41,14 @@ def main():
     cam[c4d.NULLOBJECT_DISPLAY] = 14
     
     c4d.EventAdd()
-    c4d.gui.MessageDialog("SetUp is ready!")
+    text = """
+    SetUp is ready!
+    
+    If the scene is empty just add an object!
+    """
+
+
+    c4d.gui.MessageDialog(text)
 
 
 if __name__ == '__main__':
