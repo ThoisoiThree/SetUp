@@ -13,8 +13,7 @@ def main():
     trash[c4d.ID_BASELIST_ICON_COLORIZE_MODE] = 2
     trash[c4d.ID_BASELIST_ICON_COLOR] = c4d.Vector(0.70196, 0.70196, 0.70196) #icon color
     trash[c4d.ID_BASELIST_ICON_FILE] = str(440000193)
-    trash[c4d.NULLOBJECT_DISPLAY] = 4 #change to 14 for invisible point
-    trash[c4d.NULLOBJECT_ORIENTATION] = 3
+    trash[c4d.NULLOBJECT_DISPLAY] = 14
 
     #geometry setup
     geometry = c4d.BaseObject(c4d.Onull)
@@ -47,6 +46,8 @@ def main():
 
     text = """
     SetUp is ready!
+    
+    If the scene is empty just add an object!
     """
 
     c4d.gui.MessageDialog(text)
