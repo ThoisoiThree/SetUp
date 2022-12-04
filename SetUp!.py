@@ -3,10 +3,10 @@ import c4d
 
 def main():
     
-    #Code by Thoisoi Three https://vk.com/lighting.techdirector
-    #Logo by Alexey Golod https://vk.com/golodvk
+    #!Code by Thoisoi Three https://vk.com/lighting.techdirector
+    #!Logo by Alexey Golod https://vk.com/golodvk
 
-    #trash setup
+    #*trash setup
     trash = c4d.BaseObject(c4d.Onull)
     doc.InsertObject(trash)
     trash.SetName('Trash / Archive') #folder name
@@ -15,7 +15,7 @@ def main():
     trash[c4d.ID_BASELIST_ICON_FILE] = str(440000193)
     trash[c4d.NULLOBJECT_DISPLAY] = 14
 
-    #geometry setup
+    #*geometry setup
     geometry = c4d.BaseObject(c4d.Onull)
     doc.InsertObject(geometry)
     geometry.SetName('Geometry') #folder name
@@ -33,7 +33,7 @@ def main():
     light[c4d.ID_BASELIST_ICON_FILE] = str(200000031)
     light[c4d.NULLOBJECT_DISPLAY] = 14
 
-    #cams setup
+    #*cams setup
     cam = c4d.BaseObject(c4d.Onull)
     doc.InsertObject(cam)
     cam.SetName('Cameras') #folder name
