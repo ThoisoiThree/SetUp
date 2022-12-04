@@ -11,7 +11,7 @@ def main():
     doc.InsertObject(trash)
     trash.SetName('Trash / Archive') #folder name
     trash[c4d.ID_BASELIST_ICON_COLORIZE_MODE] = 2
-    trash[c4d.ID_BASELIST_ICON_COLOR] = c4d.Vector(0.18824, 0.70196, 0.74902) #icon color
+    trash[c4d.ID_BASELIST_ICON_COLOR] = c4d.Vector(0.70196, 0.70196, 0.70196) #icon color
     trash[c4d.ID_BASELIST_ICON_FILE] = str(440000193)
     trash[c4d.NULLOBJECT_DISPLAY] = 4 #change to 14 for invisible point
     trash[c4d.NULLOBJECT_ORIENTATION] = 3
