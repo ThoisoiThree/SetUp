@@ -47,6 +47,8 @@ def main():
 
     text = """
     SetUp is ready!
+    
+    If the scene is empty just add an object!
     """
 
     c4d.gui.MessageDialog(text)
