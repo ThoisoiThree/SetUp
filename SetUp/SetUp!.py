@@ -3,8 +3,9 @@ import c4d
 
 def main():
     
-    #!Code by Thoisoi Three https://vk.com/lighting.techdirector
-    #!Logo by Alexey Golod https://vk.com/golodvk
+    #!Authors:
+    #Thoisoi Three https://vk.com/lighting.techdirector
+    #Alexey Golod https://vk.com/golodvk
 
     #*trash setup
     trash = c4d.BaseObject(c4d.Onull)
