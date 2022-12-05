@@ -4,8 +4,8 @@ import c4d
 def main():
     
     #!Authors:
-    #Thoisoi Three https://vk.com/lighting.techdirector
-    #Alexey Golod https://vk.com/golodvk
+    #!Thoisoi Three https://vk.com/lighting.techdirector
+    #!Alexey Golod https://vk.com/golodvk
 
     #*trash setup
     trash = c4d.BaseObject(c4d.Onull)
