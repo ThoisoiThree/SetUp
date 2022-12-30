@@ -53,15 +53,6 @@ def main():
         # Move the object to the folder
         obj.InsertUnder(folder)
 
-    if "Trash / Archive" not in created_folders:
-        trash = c4d.BaseObject(c4d.Onull)
-        doc.InsertObject(trash)
-        trash.SetName('Trash / Archive') #folder name
-        trash[c4d.ID_BASELIST_ICON_COLORIZE_MODE] = 2
-        trash[c4d.ID_BASELIST_ICON_COLOR] = c4d.Vector(0.70196, 0.70196, 0.70196) #icon color
-        trash[c4d.ID_BASELIST_ICON_FILE] = str(440000193)
-        trash[c4d.NULLOBJECT_DISPLAY] = 14
-
     if "Light Setup" not in created_folders:
         #*lights setup
         light = c4d.BaseObject(c4d.Onull)
@@ -92,6 +83,15 @@ def main():
         geometry[c4d.ID_BASELIST_ICON_FILE] = str(13364)
         geometry[c4d.NULLOBJECT_DISPLAY] = 14
 
+    if "Trash / Archive" not in created_folders:
+        trash = c4d.BaseObject(c4d.Onull)
+        doc.InsertObject(trash)
+        trash.SetName('Trash / Archive') #folder name
+        trash[c4d.ID_BASELIST_ICON_COLORIZE_MODE] = 2
+        trash[c4d.ID_BASELIST_ICON_COLOR] = c4d.Vector(0.70196, 0.70196, 0.70196) #icon color
+        trash[c4d.ID_BASELIST_ICON_FILE] = str(440000193)
+        trash[c4d.NULLOBJECT_DISPLAY] = 14
+    
     #* Update the scene
     c4d.EventAdd()
 
