@@ -14,7 +14,6 @@ def main():
         1007455: "Geometry", #* Subdivision
         #TODO: Vray lights support
         #TODO: Corona lights support
-        #TODO: 3Delight lights support
     }
 
     #* A dictionary to store the created folders
