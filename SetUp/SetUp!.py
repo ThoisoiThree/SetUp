@@ -12,6 +12,9 @@ def main():
         1030424: "Light Setup", #* Arnold Lights
         1036751: "Light Setup", #* Redshift Lights
         1007455: "Geometry", #* Subdivision
+        #TODO: Vray lights support
+        #TODO: Corona lights support
+        #TODO: 3Delight lights support
     }
 
     #* A dictionary to store the created folders
