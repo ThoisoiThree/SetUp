@@ -1,6 +1,10 @@
 import c4d
 
 def main():
+    
+    #! Authors:
+    #! Thoisoi Three: https://vk.com/lighting.techdirector
+    #! Alexey Golod: https://vk.com/golodvk
 
     #* A dictionary mapping object types to folder names
     folders = {
