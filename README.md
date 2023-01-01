@@ -2,7 +2,7 @@
 Is a simple script that makes initial project structure  
 **Just in one click!**    
 - [x] Autosorting by object type
-> Cinema 4D R20+ is required 
+
 
 ![Demo](https://i.ibb.co/GnGjwxR/WIP-Set-Up2.gif)
 
@@ -14,3 +14,4 @@ e.g
 ```
 
 
+> Cinema 4D R20+ is required 
