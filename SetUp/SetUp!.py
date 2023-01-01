@@ -7,6 +7,7 @@ def main():
     #! Alexey Golod: https://vk.com/golodvk
 
     #* A dictionary mapping object types to folder names
+    #! To know obj id type 'print(op.GetType())'
     folders = {
         c4d.Olight: "Light Setup",
         c4d.Opolygon: "Geometry",
@@ -16,6 +17,15 @@ def main():
         1030424: "Light Setup", #* Arnold Lights
         1036751: "Light Setup", #* Redshift Lights
         1007455: "Geometry", #* Subdivision
+        1018544: "Geometry", #* Cloner
+        1039861: "Geometry", #* Volume Mesher
+        1039859: "Geometry", #* Volume Builder
+        5126: "Geometry", #* Instance
+        1011010: "Geometry", #* Connect
+        1010865: "Geometry", #* Boole
+        5116: "Geometry", #* Extrude
+        5118: "Geometry", #* Sweep
+        5142: "Geometry", #* Symmetry
         #TODO: Vray lights support
         #TODO: Corona lights support
     }
