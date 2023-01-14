@@ -26,6 +26,36 @@ def main():
         5116: "Geometry", #* Extrude
         5118: "Geometry", #* Sweep
         5142: "Geometry", #* Symmetry
+        1050418: "Geometry", #* Octane ORBX
+        1038649: "Geometry", #* RS Proxy
+        1054728: "Geometry", #* V-Ray Proxy
+        1035544: "Geometry", #* Corona Proxy
+        1035792: "Geometry", #* Octane Volume/VDB
+        1035961: "Geometry", #* Octane Scatter
+        1050417: "Geometry", #* Octane Vectron
+        1055637: "Geometry", #* Corona Volume Grid
+        1058613: "Geometry", #* Corona Decal
+        1058600: "Geometry", #* Corona Pattern
+        1058682: "Geometry", #* Chaos Scatter
+        1059505: "Geometry", #* V-Ray Particles
+        1058532: "Geometry", #* V-Ray Scene
+        1057380: "Geometry", #* V-Ray Fur
+        1057445: "Geometry", #* V-Ray Clipper
+        1059061: "Geometry", #* V-Ray Decal
+        1059492: "Geometry", #* V-Ray Enmesh
+        1038655: "Geometry", #* RS Volume
+        1032509: "Geometry", #* Arnold Procedural
+        1033693: "Geometry", #* Arnold Volume
+        1055097: "Geometry", #* Arnold Scatter
+        1053280: "Light Setup", #* Rectangle Light V
+        1053281: "Light Setup", #* Sphere Light V
+        1053277: "Light Setup", #* Dome Light V
+        1059898: "Light Setup", #* Mesh Light V
+        1053278: "Light Setup", #* IES Light V
+        1053287: "Light Setup", #* V-Ray Sun V
+        1032104: "Light Setup", #* Corona Light C
+        1032153: "Light Setup", #* Corona Sun C
+        1053478: "Light Setup", #* Corona Sky C
         #TODO: Vray lights support
         #TODO: Corona lights support
     }
