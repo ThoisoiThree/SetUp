@@ -56,8 +56,6 @@ def main():
         1032104: "Light Setup", #* Corona Light C
         1032153: "Light Setup", #* Corona Sun C
         1053478: "Light Setup", #* Corona Sky C
-        #TODO: Vray lights support
-        #TODO: Corona lights support
     }
 
     #* A dictionary to store the created folders
