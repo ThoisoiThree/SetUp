@@ -2,7 +2,7 @@
 Is a simple script that makes initial project structure  
 **Just in one click!**   
 
-**NEW FEATURE:** Autosorting by object type
+**NEW FEATURE:** Autosorting by object type **(v2.0.0)**
 
 
 ![Demo](https://i.ibb.co/GnGjwxR/WIP-Set-Up2.gif)
