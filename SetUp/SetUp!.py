@@ -14,6 +14,7 @@ def main():
         c4d.Ocamera: "Cameras",
         c4d.Osphere: "Geometry",
         c4d.Ocube: "Geometry",
+        c4d.Onull: "Geometry",
         1030424: "Light Setup", #* Arnold Lights
         1036751: "Light Setup", #* Redshift Lights
         1007455: "Geometry", #* Subdivision
