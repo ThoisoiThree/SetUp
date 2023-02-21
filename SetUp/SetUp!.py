@@ -12,6 +12,7 @@ def main():
         c4d.Olight: "Light Setup",
         c4d.Opolygon: "Geometry",
         c4d.Ocamera: "Cameras",
+        1057516: "Cameras", #* Redshift camera
         c4d.Osphere: "Geometry",
         c4d.Ocube: "Geometry",
         c4d.Onull: "Geometry",
@@ -57,6 +58,8 @@ def main():
         1032104: "Light Setup", #* Corona Light C
         1032153: "Light Setup", #* Corona Sun C
         1053478: "Light Setup", #* Corona Sky C
+        1036751: "Light Setup", #* Redshift Light 
+        1036754: "Light Setup", #* Redshift Sky 
     }
 
     #* A dictionary to store the created folders
