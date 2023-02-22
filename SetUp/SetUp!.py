@@ -16,7 +16,7 @@
 
 import c4d
 
-# For old versions c4d
+# For old c4d versions
 ICONS_AVAILABLE = c4d.GetC4DVersion() >= 21000
 
 #* A dictionary of folders and object types to folder names
@@ -114,10 +114,10 @@ FOLDERS = {
     }
 }
 
-# Separating the names
+# Names separating
 FOLDERS_NAMES = list(FOLDERS.keys())
 
-# A dictionary to store the created folders
+# A dictionary to store created folders
 created_folders = []
 
 # Creating folders to scene
