@@ -11,6 +11,7 @@
     Thoisoi Three: https://vk.com/lighting.techdirector
     Alexey Golod: https://vk.com/golodvk
     Artem Kondrackii: https://vk.com/artem_kondrackii
+    
 """
 
 import c4d
@@ -184,4 +185,4 @@ if __name__ == "__main__":
     if c4d.GetC4DVersion() >= 16000:
         main()
     else:
-        c4d.gui.MessageDialog("SetUp it cannot be run, Cinema 4D R16 or newer is required!")
+        c4d.gui.MessageDialog("You need Cinema 4D R16 or newer to run SetUp!")
