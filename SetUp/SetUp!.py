@@ -16,8 +16,10 @@
 
 import c4d
 
+VERSION = c4d.GetC4DVersion()
+
 # For old c4d versions
-ICONS_AVAILABLE = c4d.GetC4DVersion() >= 21000
+ICONS_AVAILABLE = VERSION >= 21000
 
 # The phrase of protecting movement
 PROTECT_PHRASE = "PROTECT"
@@ -133,8 +135,8 @@ def create_folder(name):
     folder[c4d.NULLOBJECT_DISPLAY] = 14
 
     if ICONS_AVAILABLE:
-        folder[c4d.ID_BASELIST_ICON_COLOR] = config['color'] #icon color
-        folder[c4d.ID_BASELIST_ICON_FILE] = str(config['icon']) #icon image
+        folder[c4d.ID_BASELIST_ICON_COLOR] = config["color"] #icon color
+        folder[c4d.ID_BASELIST_ICON_FILE] = str(config["icon"]) #icon image
         folder[c4d.ID_BASELIST_ICON_COLORIZE_MODE] = 2
         
     doc.InsertObject(folder)
@@ -146,14 +148,14 @@ def get_names(objects):
     return [obj.GetName() for obj in objects]
 
 # Iterate through the tree and determine the last object, because the API does not implement this function
-def get_last_child(root):
-    result = root.GetDown()
-
+def get_last_child(obj):
     while True:
-        if result.GetDown() is None: break
-        result = result.GetDown()
+        if obj.GetDown() is None: break
+        obj = obj.GetDown()
+    return obj
 
-    return result
+def search(func, where):
+    return next(iter(filter(func, where)), None)
 
 def main():
     # Getting objects from scene
@@ -185,15 +187,11 @@ def main():
         else:
             last_child = get_last_child(obj)
             # Searching category by object id
-            folder_name = next(iter(filter(
-                lambda name: (last_child.GetType() if last_child is not None else obj.GetType()) in FOLDERS[name]['ids'],
-            FOLDERS)), None)
+            folder_name = search(lambda name: (last_child.GetType() if last_child is not None else obj.GetType()) in FOLDERS[name]["ids"], FOLDERS)
         
         if folder_name is not None:
             # Find folder object in store
-            folder = next(iter(filter(
-                lambda folder: folder.GetName() == folder_name,
-            created_folders)), None)
+            folder = search(lambda folder: folder.GetName() == folder_name, created_folders)
         else:
             continue
         
@@ -205,7 +203,5 @@ def main():
 
 if __name__ == "__main__":
     # Compatibility check
-    if c4d.GetC4DVersion() >= 16000:
-        main()
-    else:
-        c4d.gui.MessageDialog("You need Cinema 4D R16 or newer to run SetUp!")
+    if VERSION >= 16000: main()
+    else: c4d.gui.MessageDialog("You need Cinema 4D R16 or newer to run SetUp!")
