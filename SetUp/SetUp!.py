@@ -19,6 +19,9 @@ import c4d
 # For old c4d versions
 ICONS_AVAILABLE = c4d.GetC4DVersion() >= 21000
 
+# The phrase of protecting movement
+PROTECT_PHRASE = "PROTECT"
+
 #* A dictionary of folders and object types to folder names
 #! To know obj id type 'print(op.GetType())'
 FOLDERS = {
@@ -142,6 +145,16 @@ def create_folder(name):
 def get_names(objects):
     return [obj.GetName() for obj in objects]
 
+# Iterate through the tree and determine the last object, because the API does not implement this function
+def get_last_child(root):
+    result = root.GetDown()
+
+    while True:
+        if result.GetDown() is None: break
+        result = result.GetDown()
+
+    return result
+
 def main():
     # Getting objects from scene
     scene_objects = doc.GetObjects()
@@ -160,25 +173,35 @@ def main():
 
     for obj in scene_objects:
         obj_name = obj.GetName()
-        obj_type = obj.GetType()
         
-        # Searching category by object id
-        folder_name = next(iter(filter(lambda name: obj_type in FOLDERS[name]['ids'], FOLDERS)), None)
+        # 1. Limiting duplication of our folders
+        # 2. Protection against moving the script. Used for custom categories or to protect objects.
+        if obj_name in FOLDERS_NAMES or PROTECT_PHRASE in obj_name:
+            continue
+
+        # Check object dots status, 1 = disabled
+        if obj.GetRenderMode() == 1 and obj.GetEditorMode() == 1:
+            folder_name = "Trash / Archive"
+        else:
+            last_child = get_last_child(obj)
+            # Searching category by object id
+            folder_name = next(iter(filter(
+                lambda name: (last_child.GetType() if last_child is not None else obj.GetType()) in FOLDERS[name]['ids'],
+            FOLDERS)), None)
         
-        # Limiting duplication of our folders
-        if obj_name not in FOLDERS_NAMES:
-            if folder_name is not None:
-                folder = next(iter(filter(lambda f: f.GetName() == folder_name, created_folders)), None)
-            else:
-                continue
-            
-            if folder is not None:
-                obj.InsertUnder(folder)
+        if folder_name is not None:
+            # Find folder object in store
+            folder = next(iter(filter(
+                lambda folder: folder.GetName() == folder_name,
+            created_folders)), None)
+        else:
+            continue
+        
+        if folder is not None:
+            obj.InsertUnder(folder)
                 
     # Update the scene
     c4d.EventAdd()
-    # Done message
-    c4d.gui.MessageDialog("SetUp is ready!")
 
 if __name__ == "__main__":
     # Compatibility check
