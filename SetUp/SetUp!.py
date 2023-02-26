@@ -149,13 +149,12 @@ def get_names(objects):
 
 # Iterate through the tree and determine the last object, because the API does not implement this function
 def get_last_child(obj):
+    if obj.GetDown() is None: return obj
+    
     while True:
         if obj.GetDown() is None: break
         obj = obj.GetDown()
     return obj
-
-def search(func, where):
-    return next(iter(filter(func, where)), None)
 
 def main():
     # Getting objects from scene
@@ -185,13 +184,13 @@ def main():
         if obj.GetRenderMode() == 1 and obj.GetEditorMode() == 1:
             folder_name = "Trash / Archive"
         else:
-            last_child = get_last_child(obj)
+            last_obj_type = get_last_child(obj).GetType()
             # Searching category by object id
-            folder_name = search(lambda name: (last_child.GetType() if last_child is not None else obj.GetType()) in FOLDERS[name]["ids"], FOLDERS)
+            folder_name = next((name for name, folder in FOLDERS.items() if last_obj_type in folder['ids']), None)
         
         if folder_name is not None:
             # Find folder object in store
-            folder = search(lambda folder: folder.GetName() == folder_name, created_folders)
+            folder = next((folder for folder in created_folders if folder.GetName() == folder_name), None)
         else:
             continue
         
