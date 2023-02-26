@@ -16,8 +16,13 @@
 
 import c4d
 
+VERSION = c4d.GetC4DVersion()
+
 # For old c4d versions
-ICONS_AVAILABLE = c4d.GetC4DVersion() >= 21000
+ICONS_AVAILABLE = VERSION >= 21000
+
+# The phrase of protecting movement
+PROTECT_PHRASE = "PROTECT"
 
 #* A dictionary of folders and object types to folder names
 #! To know obj id type 'print(op.GetType())'
@@ -130,8 +135,8 @@ def create_folder(name):
     folder[c4d.NULLOBJECT_DISPLAY] = 14
 
     if ICONS_AVAILABLE:
-        folder[c4d.ID_BASELIST_ICON_COLOR] = config['color'] #icon color
-        folder[c4d.ID_BASELIST_ICON_FILE] = str(config['icon']) #icon image
+        folder[c4d.ID_BASELIST_ICON_COLOR] = config["color"] #icon color
+        folder[c4d.ID_BASELIST_ICON_FILE] = str(config["icon"]) #icon image
         folder[c4d.ID_BASELIST_ICON_COLORIZE_MODE] = 2
         
     doc.InsertObject(folder)
@@ -141,6 +146,15 @@ def create_folder(name):
 # Getting the names from objects array
 def get_names(objects):
     return [obj.GetName() for obj in objects]
+
+# Iterate through the tree and determine the last object, because the API does not implement this function
+def get_last_child(obj):
+    if obj.GetDown() is None: return obj
+    
+    while True:
+        if obj.GetDown() is None: break
+        obj = obj.GetDown()
+    return obj
 
 def main():
     # Getting objects from scene
@@ -160,29 +174,33 @@ def main():
 
     for obj in scene_objects:
         obj_name = obj.GetName()
-        obj_type = obj.GetType()
         
-        # Searching category by object id
-        folder_name = next(iter(filter(lambda name: obj_type in FOLDERS[name]['ids'], FOLDERS)), None)
+        # 1. Limiting duplication of our folders
+        # 2. Protection against moving the script. Used for custom categories or to protect objects.
+        if obj_name in FOLDERS_NAMES or PROTECT_PHRASE in obj_name:
+            continue
+
+        # Check object dots status, 1 = disabled
+        if obj.GetRenderMode() == 1 and obj.GetEditorMode() == 1:
+            folder_name = "Trash / Archive"
+        else:
+            last_obj_type = get_last_child(obj).GetType()
+            # Searching category by object id
+            folder_name = next((name for name, folder in FOLDERS.items() if last_obj_type in folder['ids']), None)
         
-        # Limiting duplication of our folders
-        if obj_name not in FOLDERS_NAMES:
-            if folder_name is not None:
-                folder = next(iter(filter(lambda f: f.GetName() == folder_name, created_folders)), None)
-            else:
-                continue
-            
-            if folder is not None:
-                obj.InsertUnder(folder)
+        if folder_name is not None:
+            # Find folder object in store
+            folder = next((folder for folder in created_folders if folder.GetName() == folder_name), None)
+        else:
+            continue
+        
+        if folder is not None:
+            obj.InsertUnder(folder)
                 
     # Update the scene
     c4d.EventAdd()
-    # Done message
-    c4d.gui.MessageDialog("SetUp is ready!")
 
 if __name__ == "__main__":
     # Compatibility check
-    if c4d.GetC4DVersion() >= 16000:
-        main()
-    else:
-        c4d.gui.MessageDialog("You need Cinema 4D R16 or newer to run SetUp!")
+    if VERSION >= 16000: main()
+    else: c4d.gui.MessageDialog("You need Cinema 4D R16 or newer to run SetUp!")
